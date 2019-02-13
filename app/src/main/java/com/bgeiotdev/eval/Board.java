@@ -24,6 +24,10 @@ public class Board {
         }
     }
 
+    /**
+     * Permet de savoir si la grille est pleine
+     * @return
+     */
     public boolean isBoardFull() {
         for (int i = 0; i < gameCells.length; i++) {
             for (int j = 0; j < gameCells[i].length; j++) {
@@ -35,6 +39,10 @@ public class Board {
         return true;
     }
 
+    /**
+     * Permet de savoir si la grille est correct
+     * @return
+     */
     public boolean isBoardCorrect() {
         // Vérification lignes
         for (int i = 0; i < gameCells.length; i++) {

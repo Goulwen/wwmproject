@@ -7,13 +7,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.bgeiotdev.eval.data.AccountManager;
+
 public class GameDifficultyActivity extends AppCompatActivity {
     private int selectedDifficulty = 0;
+
+    public static final String NOM_KEY = "nom";
+    public static final String PRENOM_KEY = "prenom";
+    public static final String EMAIL_KEY = "email";
+    public static final String SCORE_KEY = "score";
+
+    private AccountManager mBd;
+    private  String strNom;
+    private  String strPrenom;
+    private  String strEmail;
+    private int intScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_difficulty);
+
+        mBd = AccountManager.getInstance(getApplicationContext());
     }
 
     public void onGoBackButtonClicked(View view) {
@@ -51,8 +66,18 @@ public class GameDifficultyActivity extends AppCompatActivity {
      * @param view
      */
     public void onStartGameButtonClicked(View view) {
+        final Intent startingIntent  = getIntent();
+        strNom = startingIntent.getStringExtra(NewHoldUser.NOM_KEY);
+        strPrenom = startingIntent.getStringExtra(NewHoldUser.PRENOM_KEY);
+        strEmail = startingIntent.getStringExtra(NewHoldUser.EMAIL_KEY);
+        intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
+
         Intent intent = new Intent(GameDifficultyActivity.this, GameActivity.class);
         intent.putExtra("difficulty", selectedDifficulty);
+        intent.putExtra(NOM_KEY, strNom);
+        intent.putExtra(PRENOM_KEY, strPrenom);
+        intent.putExtra(EMAIL_KEY, strEmail);
+        intent.putExtra(SCORE_KEY, intScore);
         startActivity(intent);
     }
 }

@@ -1,6 +1,9 @@
 package com.bgeiotdev.eval;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +14,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bgeiotdev.eval.data.AccountManager;
+import com.bgeiotdev.eval.data.User;
+
+import java.util.List;
 
 public class PageScoring extends AppCompatActivity implements UserAdapter.ListItemClickListener {
     private UserAdapter mAdapter;
+    private List<User> listeUser;
     private RecyclerView mNumbersList;
 
-    private static final int NUM_LIST_ITEMS = 10;
+    private static final int NUM_LIST_ITEMS = 20;
 
     private AccountManager mBd;
 
@@ -47,8 +54,9 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
 
         mNumbersList.setHasFixedSize(true);
 
-        mAdapter = new UserAdapter(NUM_LIST_ITEMS,this, mBd, strNom, strPrenom, strEmail, intScore);
+        mAdapter = new UserAdapter(NUM_LIST_ITEMS,this, strNom, strPrenom, strEmail, intScore);
         mNumbersList.setAdapter(mAdapter);
+        setupViewModel();
     }
 
     @Override
@@ -64,8 +72,9 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
 
         switch (itemId) {
             case R.id.action_refresh:
-                mAdapter = new UserAdapter(NUM_LIST_ITEMS, this, mBd, strNom, strPrenom, strEmail, intScore);
+                mAdapter = new UserAdapter(NUM_LIST_ITEMS, this, strNom, strPrenom, strEmail, intScore);
                 mNumbersList.setAdapter(mAdapter);
+                setupViewModel();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -80,6 +89,16 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
         mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
 
         mToast.show();
+    }
+
+    private void setupViewModel() {
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getUsers().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(@Nullable List<User> users) {
+                mAdapter.setListUser(users);
+            }
+        });
     }
 
     public void onGoBackButtonClicked(View view) {

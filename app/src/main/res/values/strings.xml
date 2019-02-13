@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Sudoku</string>
+
     <string name="nomUser">Name : </string>
     <string name="nomUserHint">Your name</string>
     <string name="prenomUser">Firstname : </string>
@@ -7,21 +8,10 @@
     <string name="emailUser">Email : </string>
     <string name="emailUserHint">Your email</string>
     <string name="buttonValideUser">Let\'s go !</string>
-    <string name="buttonTutoriel">Tutorial</string>
-    <string name="buttonDifficulteFacile">Easy</string>
-    <string name="buttonDifficulteDifficile">Hard</string>
-    <string name="buttonScore">Scoring</string>
-    <string name="action_reset">Reset</string>
-
-
-
-
-
-
-    <string name="sudoku">Sudoku</string>
 
     <string name="new_game">Start New Game</string>
     <string name="show_instructions">Show instructions</string>
+    <string name="buttonScore">Scoring</string>
 
     <string name="instructions">Instructions</string>
     <string name="instructions_1">1. In Sudoku it is intended to place all the remaining pieces on the board. The numbers range from 1 to 9 (in 9x9 Sudoku).</string>
@@ -29,18 +19,28 @@
     <string name="instructions_3">3. It is only allowed to place one of each number at each row, both horizontal and vertical.</string>
     <string name="go_back_button">Go back</string>
 
+    <string name="action_reset">Reset</string>
+    <string name="ranking">Ranking</string>
+    <string name="score">Score : </string>
+
     <string name="choose_difficulty">Choose difficulty:</string>
     <string name="difficulty_easy">Easy</string>
     <string name="difficulty_normal">Normal</string>
     <string name="difficulty_hard">Hard</string>
     <string name="start_game">Start Game</string>
+
     <string name="choose_number">Choose number</string>
     <string name="choose_a_number">Choose number to place:</string>
     <string name="place_number">Place number</string>
     <string name="piece_unsure">Mark piece as unsure</string>
     <string name="remove_piece">Remove piece</string>
+
     <string name="start_piece_error">Can not change start piece</string>
     <string name="check_board">Check board</string>
     <string name="board_correct">Board is correct</string>
     <string name="board_incorrect">Board is not correct</string>
+
+    <string name="messageDialogue">Your new score :</string>
+    <string name="dialogueValider">Confirm</string>
+
 </resources>

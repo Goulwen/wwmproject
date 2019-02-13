@@ -1,6 +1,7 @@
 package com.bgeiotdev.eval;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,7 @@ import com.bgeiotdev.eval.data.AccountManager;
 import com.bgeiotdev.eval.data.User;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "Message debug : ";
+    private static final String TAG = "MainActivity";
 
     public static final String NOM_KEY = "nom";
     public static final String PRENOM_KEY = "prenom";
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     // Si nouvel utilisateur je le rentre dans la BDD
                     int count = mBd.UserDao().getUserCount(verifMnom, verifMprenom, verifMemail);
                     if (count <= 0) {
-                        Log.d(TAG, "Nouvel utilisateur, ok : "+ count );
+                        Log.d(TAG, "Nouvel utilisateur, ok : " + count );
                         // Si nouvel utilisateur, je le rentre dans la BDD
                         mBd.UserDao().insertUser(user);
                     }
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         Log.d(TAG, "Ancien utilisateur, ok : " + count);
                         score = mBd.UserDao().getUserScore(verifMnom, verifMprenom, verifMemail);
+                        Log.d(TAG, "Score ancien utilisateur, ok : " + score );
                     }
 
                     // J'ouvre une autre activité

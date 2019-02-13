@@ -9,13 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InstructionsActivity" />
-        <activity android:name=".GameDifficultyActivity" />
-        <activity android:name=".GameActivity" />
-        <activity android:name=".ChooseNumberActivity" />
-        <activity android:name=".fragments.CellGroupFragment" />
-        <activity android:name=".PageScoring" />
-        <activity android:name=".NewHoldUser" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +16,47 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".NewHoldUser" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.NewHoldUser" />
 
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".GameDifficultyActivity" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.GameDifficultyActivity" />
+
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".GameActivity" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.GameActivity" />
+
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".InstructionsActivity" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.InstructionsActivity" />
+
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ChooseNumberActivity" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.ChooseNumberActivity" />
+
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PageScoring" >
+            <intent-filter>
+                <action android:name="com.bgeiotdev.action.PageScoring" />
+
+                <category android:name="com.bgeiotdev.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

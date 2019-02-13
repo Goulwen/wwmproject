@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bgeiotdev.eval.data.AccountManager;
+import com.bgeiotdev.eval.data.User;
 import com.bgeiotdev.eval.fragments.CellGroupFragment;
 
 import java.io.BufferedReader;
@@ -23,17 +25,28 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity implements CellGroupFragment.OnFragmentInteractionListener {
     private final String TAG = "GameActivity";
+
     private TextView clickedCell;
+
     private int clickedGroup;
     private int clickedCellId;
+
     private Board startBoard;
     private Board currentBoard;
+
+    private AccountManager mBd;
+
+    private  String strNom;
+    private  String strPrenom;
+    private  String strEmail;
+    private int intScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // On récupère la difficulté choisie pour savoir quelle grille affichée en aléatoire
         int difficulty = getIntent().getIntExtra("difficulty", 0);
         ArrayList<Board> boards = readGameBoards(difficulty);
         startBoard = chooseRandomBoard(boards);
@@ -47,7 +60,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             thisCellGroupFragment.setGroupId(i);
         }
 
-        // Quand toute la grille est remplie
+        // Pour remplir toute la grille
         CellGroupFragment tempCellGroupFragment;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -69,6 +82,11 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         }
     }
 
+    /**
+     * Permet de choisir la grille qui est dans R.raw
+     * @param difficulty
+     * @return
+     */
     private ArrayList<Board> readGameBoards(int difficulty) {
         ArrayList<Board> boards = new ArrayList<>();
         int fileId;
@@ -103,7 +121,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             }
             bufferedReader.close();
         } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
+            Log.d(TAG, e.getMessage());
         }
 
         // Lecture des fichiers où il y a les grilles
@@ -152,17 +170,32 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         return boards;
     }
 
+    /**
+     * Permet de choisir la grille aléatoirement
+     * @param boards
+     * @return
+     */
     private Board chooseRandomBoard(ArrayList<Board> boards) {
         int randomNumber = (int) (Math.random() * boards.size());
         return boards.get(randomNumber);
     }
 
+    /**
+     * Pour connaitre les nombres de départ
+     * @param group
+     * @param cell
+     * @return
+     */
     private boolean isStartPiece(int group, int cell) {
         int row = ((group-1)/3)*3 + (cell/3);
         int column = ((group-1)%3)*3 + ((cell)%3);
         return startBoard.getValue(row, column) != 0;
     }
 
+    /**
+     * Per met de savoir si toute la grille est pleine
+     * @return
+     */
     private boolean checkAllGroups() {
         int cellGroupFragments[] = new int[]{R.id.cellGroupFragment, R.id.cellGroupFragment2, R.id.cellGroupFragment3, R.id.cellGroupFragment4,
                 R.id.cellGroupFragment5, R.id.cellGroupFragment6, R.id.cellGroupFragment7, R.id.cellGroupFragment8, R.id.cellGroupFragment9};
@@ -175,10 +208,36 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         return true;
     }
 
+    /**
+     * Permet de dire à l'utilisateur si la grille est correct
+     * obtention de point pour le score si correct et retour
+     * @param view
+     */
     public void onCheckBoardButtonClicked(View view) {
+        int difficulty = getIntent().getIntExtra("difficulty", 0);
+        mBd = AccountManager.getInstance(getApplicationContext());
+
+        final Intent startingIntent  = getIntent();
+        strNom = startingIntent.getStringExtra(GameDifficultyActivity.NOM_KEY);
+        strPrenom = startingIntent.getStringExtra(GameDifficultyActivity.PRENOM_KEY);
+        strEmail = startingIntent.getStringExtra(GameDifficultyActivity.EMAIL_KEY);
+        intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
+
+        User user = new User(strNom, strPrenom, strEmail, intScore);
+
         currentBoard.isBoardCorrect();
         if(checkAllGroups() && currentBoard.isBoardCorrect()) {
             Toast.makeText(this, getString(R.string.board_correct), Toast.LENGTH_SHORT).show();
+            if (difficulty == 1) {
+                intScore += 100;
+            } else if (difficulty == 0) {
+                intScore += 50;
+            } else {
+                intScore += 200;
+            }
+            user.setScore(intScore);
+            mBd.UserDao().updateUser(user);
+            finish();
         } else {
             Toast.makeText(this, getString(R.string.board_incorrect), Toast.LENGTH_SHORT).show();
         }
@@ -193,6 +252,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         startActivity(intent);
     }
 
+    // Android 4.1.
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -200,6 +260,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
             int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
 
+            // Pour enlever un nombre si utilisateur a pris removePiece
             Button buttonCheckBoard = findViewById(R.id.buttonCheckBoard);
             if (data.getBooleanExtra("removePiece", false)) {
                 clickedCell.setText("");
@@ -207,10 +268,12 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
                 currentBoard.setValue(row, column, 0);
                 buttonCheckBoard.setVisibility(View.INVISIBLE);
             } else {
+                // Pour mettre le nombre dans la case choisie
                 int number = data.getIntExtra("chosenNumber", 1);
                 clickedCell.setText(String.valueOf(number));
                 currentBoard.setValue(row, column, number);
 
+                // Si case isUnsure alors change la cellule sinon met normalement
                 boolean isUnsure = data.getBooleanExtra("isUnsure", false);
                 if (isUnsure) {
                     clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell_unsure));
@@ -218,6 +281,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
                     clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
                 }
 
+                // Quand la grille est pleine, un bouton apparait pour valider
                 if (currentBoard.isBoardFull()) {
                     buttonCheckBoard.setVisibility(View.VISIBLE);
                 } else {
@@ -232,7 +296,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         clickedCell = (TextView) view;
         clickedGroup = groupId;
         clickedCellId = cellId;
-        Log.i(TAG, "Clicked group " + groupId + ", cell " + cellId);
+        Log.d(TAG, "Clicked group " + groupId + ", cell " + cellId);
         if (!isStartPiece(groupId, cellId)) {
             Intent intent = new Intent(GameActivity.this, ChooseNumberActivity.class);
             startActivityForResult(intent, 1);

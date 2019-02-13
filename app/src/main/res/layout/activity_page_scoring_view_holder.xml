@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
-            tools:text="Rang"
+            tools:text="@string/ranking"
             android:layout_margin="10dp"/>
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            tools:text="Nom"
+            tools:text="@string/nomUser"
             android:layout_margin="10dp"/>
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            tools:text="Prenom"
+            tools:text="@string/prenomUser"
             android:layout_margin="10dp"/>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            tools:text="Email"
+            tools:text="@string/emailUser"
             android:layout_margin="10dp"/>
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            tools:text="Score"
+            tools:text="@string/score"
             android:layout_margin="10dp"/>
     </LinearLayout>
 

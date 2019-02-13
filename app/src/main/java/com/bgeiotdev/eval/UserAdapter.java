@@ -1,6 +1,5 @@
 package com.bgeiotdev.eval;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bgeiotdev.eval.data.AccountManager;
 import com.bgeiotdev.eval.data.User;
 
 import java.util.List;
@@ -20,12 +18,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private final ListItemClickListener mOnClickListener;
 
     private static int viewHolderCount;
-    private AccountManager mBd;
     private  String strNom;
     private  String strPrenom;
     private  String strEmail;
     private int intScore;
-    LiveData<List<User>> listeUser;
+    private List<User> listeUser;
 
     private int mNumberItems;
 
@@ -33,11 +30,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         void onListItemClick(int clickedItemIndex);
     }
 
-    public UserAdapter(int numberOfItems, ListItemClickListener listener, AccountManager mBd, String nom, String prenom, String email, int score) {
+    public UserAdapter(int numberOfItems, ListItemClickListener listener, String nom, String prenom, String email, int score) {
         mNumberItems = numberOfItems;
         mOnClickListener = listener;
         viewHolderCount = 0;
-        this.mBd = mBd;
         strNom = nom;
         strPrenom = prenom;
         strEmail = email;
@@ -54,10 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         UserViewHolder viewHolder = new UserViewHolder(view);
 
-        listeUser = mBd.UserDao().getAllUser();
-
-
-        viewHolder.viewHolderIndex1.setText("Nom\n" + listeUser.getValue());
+        viewHolder.viewHolderIndex1.setText("Nom\n" + strNom);
         viewHolder.viewHolderIndex2.setText("Prénom\n" + strPrenom);
         viewHolder.viewHolderIndex3.setText("Email\n" + strEmail);
         viewHolder.viewHolderIndex4.setText("Score\n" + intScore);
@@ -72,7 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
-        Log.d(TAG, "#" + position);
+        Log.d(TAG, "position #" + position);
         holder.bind(position);
     }
 
@@ -83,10 +76,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        // Will display the position in the list, ie 0 through getItemCount() - 1
         TextView listItemNumberView;
-        // Will display which ViewHolder is displaying this data
         TextView viewHolderIndex1;
         TextView viewHolderIndex2;
         TextView viewHolderIndex3;
@@ -105,7 +95,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         // Affiche position de 1 à 10
         void bind(int listIndex) {
+
             listItemNumberView.setText(String.valueOf(listIndex + 1));
+            User user = listeUser.get(listIndex);
+            viewHolderIndex1.setText(user.getNom());
+            viewHolderIndex2.setText(user.getPrenom());
+            viewHolderIndex3.setText(user.getEmail());
+            viewHolderIndex4.setText(user.getScore());
         }
 
         @Override
@@ -113,5 +109,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             int clickedPosition = getAdapterPosition();
             mOnClickListener.onListItemClick(clickedPosition);
         }
+    }
+
+    public void setListUser(List<User> users) {
+        listeUser = users;
+        notifyDataSetChanged();
     }
 }

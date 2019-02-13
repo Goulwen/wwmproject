@@ -42,7 +42,6 @@ public class NewHoldUser extends AppCompatActivity {
         setContentView(R.layout.activity_new_hold_user);
 
         mBd = AccountManager.getInstance(getApplicationContext());
-        intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
 
         messageInfoBienvenue = (TextView) findViewById(R.id.messageInfoBienvenue);
 
@@ -66,6 +65,7 @@ public class NewHoldUser extends AppCompatActivity {
             strEmail = startingIntent.getStringExtra(MainActivity.EMAIL_KEY);
             if (strEmail !=null){
                 messageInfoBienvenue.append("Email :  " + strEmail +"\n\n");
+                intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
                 messageInfoBienvenue.append("Score :  " + intScore +"\n\n");
             }
         }
@@ -90,6 +90,10 @@ public class NewHoldUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gameActivity = new Intent(NewHoldUser.this, GameDifficultyActivity.class);
+                gameActivity.putExtra(NOM_KEY, strNom);
+                gameActivity.putExtra(PRENOM_KEY, strPrenom);
+                gameActivity.putExtra(EMAIL_KEY, strEmail);
+                gameActivity.putExtra(SCORE_KEY, intScore);
                 startActivity(gameActivity);
             }
         });
