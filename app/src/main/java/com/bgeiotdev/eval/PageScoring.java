@@ -20,7 +20,6 @@ import java.util.List;
 
 public class PageScoring extends AppCompatActivity implements UserAdapter.ListItemClickListener {
     private UserAdapter mAdapter;
-    private List<User> listeUser;
     private RecyclerView mNumbersList;
 
     private static final int NUM_LIST_ITEMS = 20;
