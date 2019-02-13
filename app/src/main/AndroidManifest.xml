@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".InstructionsActivity" />
+        <activity android:name=".GameDifficultyActivity" />
+        <activity android:name=".GameActivity" />
+        <activity android:name=".ChooseNumberActivity" />
+        <activity android:name=".fragments.CellGroupFragment" />
+        <activity android:name=".PageScoring" />
+        <activity android:name=".NewHoldUser" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

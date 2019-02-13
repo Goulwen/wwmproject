@@ -1,3 +1,54 @@
 <resources>
-    <string name="app_name">wwmproject</string>
+    <string name="app_name">Sudoku</string>
+    <string name="nomUser">Nom : </string>
+    <string name="nomUserHint">Votre nom</string>
+    <string name="prenomUser">Prénom : </string>
+    <string name="prenomUserHint">Votre prénom</string>
+    <string name="emailUser">Email : </string>
+    <string name="emailUserHint">Votre email</string>
+    <string name="buttonValideUser">Commencer</string>
+    <string name="buttonTutoriel">Tutoriel</string>
+    <string name="buttonDifficulteFacile">Facile</string>
+    <string name="buttonDifficulteDifficile">Difficile</string>
+    <string name="buttonScore">Historique des scores</string>
+    <string name="action_reset">Actualiser</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="sudoku">Sudoku</string>
+
+    <string name="new_game">Commencer un nouveau jeu</string>
+    <string name="show_instructions">Voir les instructions</string>
+
+    <string name="instructions">Instructions</string>
+    <string name="instructions_1">1. Dans un Sudoku, il est prévu de placer toutes les pièces restantes sur la grille. Les chiffres vont de 1 à 9 (dans un Sudoku 9x9).</string>
+    <string name="instructions_2">2. La grille est divisé en plusieurs carrés et à l\'intérieur de chacun d\'eux, il est uniquement permis de placer un numéro de chaque.</string>
+    <string name="instructions_3">3. Il est seulement permis de placer un numéro à chaque rangée, à la fois horizontale et verticale.</string>
+    <string name="go_back_button">Retour</string>
+
+    <string name="choose_difficulty">Choisir la difficulté :</string>
+    <string name="difficulty_easy">Facile</string>
+    <string name="difficulty_normal">Normal</string>
+    <string name="difficulty_hard">Difficile</string>
+    <string name="start_game">Commencer le jeu</string>
+    <string name="choose_number">Choisir un nombre</string>
+    <string name="choose_a_number">Nombre à placer :</string>
+    <string name="place_number">Placer le nombre</string>
+    <string name="piece_unsure">Marquer le nombre pas sûr</string>
+    <string name="remove_piece">Supprimer le nombre</string>
+    <string name="start_piece_error">Can not change start piece</string>
+    <string name="check_board">Check board</string>
+    <string name="board_correct">La grille est correct</string>
+    <string name="board_incorrect">La grille n\'est pas correct</string>
 </resources>
