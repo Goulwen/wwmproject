@@ -16,6 +16,10 @@ public interface UserDao {
     @Query("SELECT * FROM user ORDER BY score ASC")
     LiveData<List<User>> getAllUser();
 
+
+    @Query("SELECT * FROM user ORDER BY score ASC")
+    List<User> getAllUserNoLive();
+
     @Insert
     void insertUser(User user);
 
@@ -24,6 +28,8 @@ public interface UserDao {
 
     @Delete
     void deleteUser(User user);
+
+
 
     @Query("SELECT count(*) FROM user WHERE (nom = :mNom AND prenom = :mPrenom AND email = :mEmail)")
     int getUserCount(String mNom, String mPrenom, String mEmail);

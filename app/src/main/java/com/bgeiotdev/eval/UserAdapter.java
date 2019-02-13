@@ -95,13 +95,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         // Affiche position de 1 à 10
         void bind(int listIndex) {
-
-            listItemNumberView.setText(String.valueOf(listIndex + 1));
             User user = listeUser.get(listIndex);
+            listItemNumberView.setText(String.valueOf(listIndex + 1));
+
             viewHolderIndex1.setText(user.getNom());
             viewHolderIndex2.setText(user.getPrenom());
             viewHolderIndex3.setText(user.getEmail());
-            viewHolderIndex4.setText(user.getScore());
+            viewHolderIndex4.setText(""+user.getScore());
         }
 
         @Override

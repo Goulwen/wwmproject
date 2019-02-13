@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.bgeiotdev.eval.data.User;
 import java.util.List;
 
 public class PageScoring extends AppCompatActivity implements UserAdapter.ListItemClickListener {
+
+    private static final String TAG = PageScoring.class.getSimpleName();
     private UserAdapter mAdapter;
     private RecyclerView mNumbersList;
 
@@ -32,6 +35,8 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
     private  String strPrenom;
     private  String strEmail;
     private int intScore;
+
+    private List<User> listeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +76,10 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
 
         switch (itemId) {
             case R.id.action_refresh:
-                mAdapter = new UserAdapter(NUM_LIST_ITEMS, this, strNom, strPrenom, strEmail, intScore);
+            /*    mAdapter = new UserAdapter(NUM_LIST_ITEMS, this, strNom, strPrenom, strEmail, intScore);
                 mNumbersList.setAdapter(mAdapter);
-                setupViewModel();
+                setupViewModel();*/
+            mAdapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -91,6 +97,12 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
     }
 
     private void setupViewModel() {
+
+        List<User> users =  mBd.UserDao().getAllUserNoLive();
+
+        Log.d(TAG," size users " + users.size());
+        mAdapter.setListUser(users);
+
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getUsers().observe(this, new Observer<List<User>>() {
             @Override
