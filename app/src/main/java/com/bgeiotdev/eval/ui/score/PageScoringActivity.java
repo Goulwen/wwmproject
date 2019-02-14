@@ -1,5 +1,6 @@
 package com.bgeiotdev.eval.ui.score;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -28,8 +29,6 @@ public class PageScoringActivity extends AppCompatActivity implements UserAdapte
     private static final String TAG = PageScoringActivity.class.getSimpleName();
     private UserAdapter mAdapter;
     private RecyclerView mRecyclerView;
-
-    private static final int NUM_LIST_ITEMS = 20;
 
     private AccountManager mBd;
 
@@ -60,7 +59,7 @@ public class PageScoringActivity extends AppCompatActivity implements UserAdapte
 
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new UserAdapter(NUM_LIST_ITEMS,this);
+        mAdapter = new UserAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
         setupViewModel();
     }
@@ -97,10 +96,12 @@ public class PageScoringActivity extends AppCompatActivity implements UserAdapte
 
     private void setupViewModel() {
 
+
         List<User> users =  mBd.UserDao().getAllUserNoLive();
 
         Log.d(TAG," size users " + users.size());
         mAdapter.setListUser(users);
+
 
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getUsers().observe(this, new Observer<List<User>>() {
@@ -114,4 +115,5 @@ public class PageScoringActivity extends AppCompatActivity implements UserAdapte
     public void onGoBackButtonClicked(View view) {
         finish();
     }
+
 }

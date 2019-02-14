@@ -21,14 +21,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private static int viewHolderCount;
     private List<User> listeUser;
 
-    private int mNombreItemAffiche;
-
     public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
 
-    public UserAdapter(int nombreItemAffiche, ListItemClickListener listener) {
-        mNombreItemAffiche = nombreItemAffiche;
+    public UserAdapter(ListItemClickListener listener) {
         mOnClickListener = listener;
         viewHolderCount = 0;
     }
