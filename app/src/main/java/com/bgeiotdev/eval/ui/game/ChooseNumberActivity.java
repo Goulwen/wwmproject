@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.ui.game;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+
+import com.bgeiotdev.eval.R;
 
 public class ChooseNumberActivity extends AppCompatActivity {
     private int selectedNumber = 1;

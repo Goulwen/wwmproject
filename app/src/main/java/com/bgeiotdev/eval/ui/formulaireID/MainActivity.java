@@ -1,7 +1,6 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.ui.formulaireID;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bgeiotdev.eval.data.AccountManager;
-import com.bgeiotdev.eval.data.User;
+import com.bgeiotdev.eval.R;
+import com.bgeiotdev.eval.data.bdd.AccountManager;
+import com.bgeiotdev.eval.data.bdd.User;
+import com.bgeiotdev.eval.ui.orientationJeuScore.NewHoldUserActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // J'ouvre une autre activité
-                    Intent newHoldUserIntent = new Intent(MainActivity.this, NewHoldUser.class);
+                    Intent newHoldUserIntent = new Intent(MainActivity.this, NewHoldUserActivity.class);
                     newHoldUserIntent.putExtra(NOM_KEY, verifMnom);
                     newHoldUserIntent.putExtra(PRENOM_KEY, verifMprenom);
                     newHoldUserIntent.putExtra(EMAIL_KEY, verifMemail);

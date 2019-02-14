@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bgeiotdev.eval.data.User;
+import com.bgeiotdev.eval.data.bdd.User;
+import com.bgeiotdev.eval.util.ColorUtils;
 
 import java.util.List;
 
@@ -18,26 +19,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private final ListItemClickListener mOnClickListener;
 
     private static int viewHolderCount;
-    private  String strNom;
-    private  String strPrenom;
-    private  String strEmail;
-    private int intScore;
     private List<User> listeUser;
 
-    private int mNumberItems;
+    private int mNombreItemAffiche;
 
     public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
 
-    public UserAdapter(int numberOfItems, ListItemClickListener listener, String nom, String prenom, String email, int score) {
-        mNumberItems = numberOfItems;
+    public UserAdapter(int nombreItemAffiche, ListItemClickListener listener) {
+        mNombreItemAffiche = nombreItemAffiche;
         mOnClickListener = listener;
         viewHolderCount = 0;
-        strNom = nom;
-        strPrenom = prenom;
-        strEmail = email;
-        intScore = score;
     }
 
     @Override
@@ -48,60 +41,61 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
-        UserViewHolder viewHolder = new UserViewHolder(view);
+        UserViewHolder userViewHolder = new UserViewHolder(view);
 
-        viewHolder.viewHolderIndex1.setText("Nom\n" + strNom);
-        viewHolder.viewHolderIndex2.setText("Prénom\n" + strPrenom);
-        viewHolder.viewHolderIndex3.setText("Email\n" + strEmail);
-        viewHolder.viewHolderIndex4.setText("Score\n" + intScore);
+        userViewHolder.viewNom.setText("Nom\n");
+        userViewHolder.viewPrenom.setText("Prénom\n");
+        userViewHolder.viewEmail.setText("Email\n");
+        userViewHolder.viewScore.setText("Score\n");
 
+        // Changer le background des view
         int backgroundColorForViewHolder = ColorUtils
                 .getViewHolderBackgroundColorFromInstance(context, viewHolderCount);
-        viewHolder.itemView.setBackgroundColor(backgroundColorForViewHolder);
-
+        userViewHolder.itemView.setBackgroundColor(backgroundColorForViewHolder);
         viewHolderCount++;
-        return viewHolder;
+
+        return userViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(UserViewHolder holder, int position) {
+    public void onBindViewHolder(UserViewHolder userViewHolder, int position) {
         Log.d(TAG, "position #" + position);
-        holder.bind(position);
+        userViewHolder.bind(position);
     }
 
     @Override
     public int getItemCount() {
 
-        return mNumberItems;
+        return listeUser.size();
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView listItemNumberView;
-        TextView viewHolderIndex1;
-        TextView viewHolderIndex2;
-        TextView viewHolderIndex3;
-        TextView viewHolderIndex4;
+        TextView viewClassement;
+        TextView viewNom;
+        TextView viewPrenom;
+        TextView viewEmail;
+        TextView viewScore;
 
         public UserViewHolder(View itemView) {
             super(itemView);
 
-            listItemNumberView = (TextView) itemView.findViewById(R.id.tv_item_number);
-            viewHolderIndex1 = (TextView) itemView.findViewById(R.id.tv_view_holder_instance1);
-            viewHolderIndex2 = (TextView) itemView.findViewById(R.id.tv_view_holder_instance2);
-            viewHolderIndex3 = (TextView) itemView.findViewById(R.id.tv_view_holder_instance3);
-            viewHolderIndex4 = (TextView) itemView.findViewById(R.id.tv_view_holder_instance4);
+            viewClassement = (TextView) itemView.findViewById(R.id.viewClassement);
+            viewNom = (TextView) itemView.findViewById(R.id.viewNom);
+            viewPrenom = (TextView) itemView.findViewById(R.id.viewPrenom);
+            viewEmail = (TextView) itemView.findViewById(R.id.viewEmail);
+            viewScore = (TextView) itemView.findViewById(R.id.viewScore);
             itemView.setOnClickListener(this);
         }
 
-        // Affiche position de 1 à 10
+        // Affiche position
         void bind(int listIndex) {
             User user = listeUser.get(listIndex);
-            listItemNumberView.setText(String.valueOf(listIndex + 1));
+            viewClassement.setText(String.valueOf(listIndex + 1));
 
-            viewHolderIndex1.setText(user.getNom());
-            viewHolderIndex2.setText(user.getPrenom());
-            viewHolderIndex3.setText(user.getEmail());
-            viewHolderIndex4.setText(""+user.getScore());
+            viewNom.setText(user.getNom());
+            viewPrenom.setText(user.getPrenom());
+            viewEmail.setText(user.getEmail());
+            viewScore.setText(""+user.getScore());
         }
 
         @Override

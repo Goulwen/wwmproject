@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval.fragments;
+package com.bgeiotdev.eval.ui.fragments;
 
 import android.content.Context;
 import android.graphics.Color;

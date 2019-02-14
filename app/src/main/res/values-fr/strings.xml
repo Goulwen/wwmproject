@@ -9,6 +9,7 @@
     <string name="emailUserHint">Votre email</string>
     <string name="buttonValideUser">Commencer</string>
 
+    <string name="welcome">Bienvenue</string>
     <string name="new_game">Commencer un nouveau jeu</string>
     <string name="show_instructions">Voir les instructions</string>
     <string name="buttonScore">Historique des scores</string>
@@ -20,7 +21,7 @@
     <string name="go_back_button">Retour</string>
 
     <string name="action_reset">Actualiser</string>
-    <string name="ranking">Classement</string>
+    <string name="ranking">Rang</string>
     <string name="score">Score : </string>
 
     <string name="choose_difficulty">Choisir la difficulté :</string>

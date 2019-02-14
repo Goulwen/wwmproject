@@ -5,8 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
-import com.bgeiotdev.eval.data.AccountManager;
-import com.bgeiotdev.eval.data.User;
+import com.bgeiotdev.eval.data.bdd.AccountManager;
+import com.bgeiotdev.eval.data.bdd.User;
 
 import java.util.List;
 

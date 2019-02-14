@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".ui.game.GameActivity">
 
     <TableLayout
         android:layout_width="337dp"
@@ -25,7 +25,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="0"
@@ -33,7 +33,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment2"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="1"
@@ -41,7 +41,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment3"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="2"
@@ -55,7 +55,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment4"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="3"
@@ -63,7 +63,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment5"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="4"
@@ -71,7 +71,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment6"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="5"
@@ -84,7 +84,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment7"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="6"
@@ -92,7 +92,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment8"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="7"
@@ -100,7 +100,7 @@
 
             <fragment
                 android:id="@+id/cellGroupFragment9"
-                android:name="com.bgeiotdev.eval.fragments.CellGroupFragment"
+                android:name="com.bgeiotdev.eval.ui.fragments.CellGroupFragment"
                 android:layout_width="92dp"
                 android:layout_height="106dp"
                 android:tag="8"

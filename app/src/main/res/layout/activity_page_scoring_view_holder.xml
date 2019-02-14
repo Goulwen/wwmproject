@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".PageScoring"
+    tools:context=".ui.score.PageScoringActivity"
     android:padding="16dp">
 
     <LinearLayout
@@ -15,49 +15,44 @@
 
 
         <TextView
-            android:id="@+id/tv_item_number"
+            android:id="@+id/viewClassement"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
             tools:text="@string/ranking"
-            android:layout_margin="10dp"/>
+            android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_view_holder_instance1"
+            android:id="@+id/viewNom"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
             tools:text="@string/nomUser"
-            android:layout_margin="10dp"/>
+            android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_view_holder_instance2"
+            android:id="@+id/viewPrenom"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
             tools:text="@string/prenomUser"
-            android:layout_margin="10dp"/>
+            android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_view_holder_instance3"
+            android:id="@+id/viewEmail"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
             tools:text="@string/emailUser"
-            android:layout_margin="10dp"/>
+            android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_view_holder_instance4"
+            android:id="@+id/viewScore"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
             tools:text="@string/score"
-            android:layout_margin="10dp"/>
+            android:layout_weight="1"/>
     </LinearLayout>
 
 </FrameLayout>

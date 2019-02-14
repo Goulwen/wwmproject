@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval.data;
+package com.bgeiotdev.eval.data.bdd;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;

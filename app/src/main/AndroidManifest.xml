@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bgeiotdev.eval">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,49 +11,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.formulaireID.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewHoldUser" >
+        <activity android:name=".ui.orientationJeuScore.NewHoldUserActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.NewHoldUser" />
 
                 <category android:name="com.bgeiotdev.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameDifficultyActivity" >
+        <activity android:name=".ui.game.GameDifficultyActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.GameDifficultyActivity" />
 
                 <category android:name="com.bgeiotdev.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity" >
+        <activity android:name=".ui.game.GameActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.GameActivity" />
 
                 <category android:name="com.bgeiotdev.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".InstructionsActivity" >
+        <activity android:name=".ui.game.InstructionsActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.InstructionsActivity" />
 
                 <category android:name="com.bgeiotdev.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseNumberActivity" >
+        <activity android:name=".ui.game.ChooseNumberActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.ChooseNumberActivity" />
 
                 <category android:name="com.bgeiotdev.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PageScoring" >
+        <activity android:name=".ui.score.PageScoringActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.bgeiotdev.action.PageScoring" />
 

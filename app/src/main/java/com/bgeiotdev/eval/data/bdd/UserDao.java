@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval.data;
+package com.bgeiotdev.eval.data.bdd;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -13,11 +13,11 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM user ORDER BY score ASC")
+    @Query("SELECT * FROM user ORDER BY score DESC")
     LiveData<List<User>> getAllUser();
 
 
-    @Query("SELECT * FROM user ORDER BY score ASC")
+    @Query("SELECT * FROM user ORDER BY score DESC")
     List<User> getAllUserNoLive();
 
     @Insert

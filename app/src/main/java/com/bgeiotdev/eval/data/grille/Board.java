@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.data.grille;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.ui.score;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,16 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bgeiotdev.eval.data.AccountManager;
-import com.bgeiotdev.eval.data.User;
+import com.bgeiotdev.eval.MainViewModel;
+import com.bgeiotdev.eval.R;
+import com.bgeiotdev.eval.UserAdapter;
+import com.bgeiotdev.eval.data.bdd.AccountManager;
+import com.bgeiotdev.eval.data.bdd.User;
+import com.bgeiotdev.eval.ui.orientationJeuScore.NewHoldUserActivity;
 
 import java.util.List;
 
-public class PageScoring extends AppCompatActivity implements UserAdapter.ListItemClickListener {
+public class PageScoringActivity extends AppCompatActivity implements UserAdapter.ListItemClickListener {
 
-    private static final String TAG = PageScoring.class.getSimpleName();
+    private static final String TAG = PageScoringActivity.class.getSimpleName();
     private UserAdapter mAdapter;
-    private RecyclerView mNumbersList;
+    private RecyclerView mRecyclerView;
 
     private static final int NUM_LIST_ITEMS = 20;
 
@@ -36,8 +40,6 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
     private  String strEmail;
     private int intScore;
 
-    private List<User> listeUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +48,20 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
         mBd = AccountManager.getInstance(getApplicationContext());
 
         final Intent startingIntent  = getIntent();
-        strNom = startingIntent.getStringExtra(NewHoldUser.NOM_KEY);
-        strPrenom = startingIntent.getStringExtra(NewHoldUser.PRENOM_KEY);
-        strEmail = startingIntent.getStringExtra(NewHoldUser.EMAIL_KEY);
+        strNom = startingIntent.getStringExtra(NewHoldUserActivity.NOM_KEY);
+        strPrenom = startingIntent.getStringExtra(NewHoldUserActivity.PRENOM_KEY);
+        strEmail = startingIntent.getStringExtra(NewHoldUserActivity.EMAIL_KEY);
         intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
 
-        mNumbersList = (RecyclerView) findViewById(R.id.afficheScoreJoueurs);
+        mRecyclerView = (RecyclerView) findViewById(R.id.afficheScoreJoueurs);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mNumbersList.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
 
-        mNumbersList.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new UserAdapter(NUM_LIST_ITEMS,this, strNom, strPrenom, strEmail, intScore);
-        mNumbersList.setAdapter(mAdapter);
+        mAdapter = new UserAdapter(NUM_LIST_ITEMS,this);
+        mRecyclerView.setAdapter(mAdapter);
         setupViewModel();
     }
 
@@ -76,10 +78,7 @@ public class PageScoring extends AppCompatActivity implements UserAdapter.ListIt
 
         switch (itemId) {
             case R.id.action_refresh:
-            /*    mAdapter = new UserAdapter(NUM_LIST_ITEMS, this, strNom, strPrenom, strEmail, intScore);
-                mNumbersList.setAdapter(mAdapter);
-                setupViewModel();*/
-            mAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);

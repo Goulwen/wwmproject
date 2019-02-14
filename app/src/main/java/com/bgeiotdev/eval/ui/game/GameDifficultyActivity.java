@@ -1,13 +1,14 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.ui.game;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 
-import com.bgeiotdev.eval.data.AccountManager;
+import com.bgeiotdev.eval.R;
+import com.bgeiotdev.eval.data.bdd.AccountManager;
+import com.bgeiotdev.eval.ui.orientationJeuScore.NewHoldUserActivity;
 
 public class GameDifficultyActivity extends AppCompatActivity {
     private int selectedDifficulty = 0;
@@ -67,9 +68,9 @@ public class GameDifficultyActivity extends AppCompatActivity {
      */
     public void onStartGameButtonClicked(View view) {
         final Intent startingIntent  = getIntent();
-        strNom = startingIntent.getStringExtra(NewHoldUser.NOM_KEY);
-        strPrenom = startingIntent.getStringExtra(NewHoldUser.PRENOM_KEY);
-        strEmail = startingIntent.getStringExtra(NewHoldUser.EMAIL_KEY);
+        strNom = startingIntent.getStringExtra(NewHoldUserActivity.NOM_KEY);
+        strPrenom = startingIntent.getStringExtra(NewHoldUserActivity.PRENOM_KEY);
+        strEmail = startingIntent.getStringExtra(NewHoldUserActivity.EMAIL_KEY);
         intScore = mBd.UserDao().getUserScore(strNom, strPrenom, strEmail);
 
         Intent intent = new Intent(GameDifficultyActivity.this, GameActivity.class);

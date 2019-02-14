@@ -1,4 +1,4 @@
-package com.bgeiotdev.eval;
+package com.bgeiotdev.eval.ui.game;
 
 import android.content.Intent;
 import android.os.Build;
@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bgeiotdev.eval.data.AccountManager;
-import com.bgeiotdev.eval.data.User;
-import com.bgeiotdev.eval.fragments.CellGroupFragment;
+import com.bgeiotdev.eval.data.grille.Board;
+import com.bgeiotdev.eval.R;
+import com.bgeiotdev.eval.data.bdd.AccountManager;
+import com.bgeiotdev.eval.data.bdd.User;
+import com.bgeiotdev.eval.ui.fragments.CellGroupFragment;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
